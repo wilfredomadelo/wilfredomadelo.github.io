@@ -4,7 +4,7 @@ const fs = require("fs");
 (async () => {
   try {
 //     await execa("git", ["checkout", "--orphan", "start"]);
-    await execa("git", ["checkout", "--orphan", "start"]);
+    await execa("git", ["checkout", "--orphan", "master"]);
     // eslint-disable-next-line no-console
     console.log("Building started...");
     await execa("npm", ["run", "build"]);
@@ -17,12 +17,12 @@ const fs = require("fs");
 //     await execa("rm", ["-r", folderName]);
 //     await execa("git", ["checkout", "-f", "master"]);
 //     await execa("git", ["branch", "-D", "start"]);
-    await execa("git", ["--work-tree", folderName, "commit", "-m", "start"]);
+    await execa("git", ["--work-tree", folderName, "commit", "-m", "master"]);
     console.log("Pushing to start...");
-    await execa("git", ["push", "origin", "HEAD:start", "--force"]);
+    await execa("git", ["push", "origin", "HEAD:master", "--force"]);
     await execa("rm", ["-r", folderName]);
     await execa("git", ["checkout", "-f", "master"]);
-    await execa("git", ["branch", "-D", "start"]);
+    await execa("git", ["branch", "-D", "master"]);
     console.log("Successfully deployed, check your settings");
   } catch (e) {
     // eslint-disable-next-line no-console
